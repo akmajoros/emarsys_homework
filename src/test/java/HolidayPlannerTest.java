@@ -31,7 +31,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testWithMultipleDestinationOneRule() {
+  public void testWithMultipleDestinationsOneRule() {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("X", ""));
@@ -56,5 +56,26 @@ public class HolidayPlannerTest {
     test.add("Z");
     test.add("Y");
     assertEquals(test, p.journeyPlanner(d));
+  }
+
+  @Test
+  public void testWithMultipleDestinationsMultipleRules() {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("U", ""));
+    d.add(new DestinationInput("V", "W"));
+    d.add(new DestinationInput("W", "Z"));
+    d.add(new DestinationInput("X", "U"));
+    d.add(new DestinationInput("Y", "V"));
+    d.add(new DestinationInput("Z", ""));
+    List<String> test = new ArrayList<>();
+    test.add("U");
+    test.add("X");
+    test.add("Z");
+    test.add("W");
+    test.add("V");
+    test.add("Y");
+    assertEquals(test, p.journeyPlanner(d));
+
   }
 }
