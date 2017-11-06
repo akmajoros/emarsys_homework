@@ -9,7 +9,7 @@ public class HolidayPlanner {
   public HolidayPlanner() {
   }
 
-  public List<String> journeyPlanner(List<DestinationInput> listOfDestinations) {
+  public List<String> journeyPlanner(List<DestinationInput> listOfDestinations) throws Exception {
     while (listOfDestinations.size() > 0) {
       for (Iterator<DestinationInput> iterator = listOfDestinations.iterator();
           iterator.hasNext(); ) {
@@ -29,6 +29,11 @@ public class HolidayPlanner {
         }
       }
     }
+
+    if (optimalJourneyPlan.size() <= 0){
+      throw new Exception("Journey can't be created with no locations given");
+    } else {
       return optimalJourneyPlan;
+    }
   }
 }

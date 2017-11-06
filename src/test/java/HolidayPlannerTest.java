@@ -7,7 +7,7 @@ import org.junit.Test;
 public class HolidayPlannerTest {
 
   @Test
-  public void testWithOneDestinationNoRule() {
+  public void testWithOneDestinationNoRule() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("X", ""));
@@ -17,7 +17,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testWithMultipleDestinationNoRules() {
+  public void testWithMultipleDestinationNoRules() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("X", ""));
@@ -31,7 +31,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testWithMultipleDestinationsOneRule() {
+  public void testWithMultipleDestinationsOneRule() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("X", ""));
@@ -45,7 +45,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testCaseSensitivity() {
+  public void testCaseSensitivity() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("X", ""));
@@ -59,7 +59,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testWithMultipleDestinationsMultipleRules() {
+  public void testWithMultipleDestinationsMultipleRules() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("U", ""));
@@ -79,7 +79,7 @@ public class HolidayPlannerTest {
   }
 
   @Test
-  public void testWithMultipleRepeatedRule() {
+  public void testWithMultipleRepeatedRule() throws Exception {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     d.add(new DestinationInput("W", "X"));
@@ -91,5 +91,12 @@ public class HolidayPlannerTest {
     test.add("Z");
     test.add("W");
     test.add("Y");
+  }
+
+  @Test(expected = Exception.class)
+  public void testWithNoInputGiven() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    p.journeyPlanner(d);
   }
 }
