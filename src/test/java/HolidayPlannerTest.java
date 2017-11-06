@@ -134,5 +134,19 @@ public class HolidayPlannerTest {
     test.add("X");
     test.add("Y");
     test.add("Z");
+    assertEquals(test, p.journeyPlanner(d));
+  }
+
+  @Test
+  public void testWithMoreOfSameDestinationNoRule() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("X", ""));
+    d.add(new DestinationInput("Y", "X"));
+    d.add(new DestinationInput("X", ""));
+    List<String> test = new ArrayList<>();
+    test.add("X");
+    test.add("Y");
+    assertEquals(test, p.journeyPlanner(d));
   }
 }

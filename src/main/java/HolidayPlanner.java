@@ -20,14 +20,12 @@ public class HolidayPlanner {
 
         if (destinationInput.location.equals("")) {
           iterator.remove();
-        }
-
-        if (!destinationInput.location.equals("") && destinationInput.rule.equals("")) {
+        } else if(optimalJourneyPlan.contains(upperCaseLocation) && destinationInput.rule.equals("")) {
+          iterator.remove();
+        } else if (!destinationInput.location.equals("") && destinationInput.rule.equals("")) {
           optimalJourneyPlan.add(upperCaseLocation);
           iterator.remove();
-        }
-
-        if (optimalJourneyPlan.contains(upperCaseRule)) {
+        } else if (optimalJourneyPlan.contains(upperCaseRule)) {
           optimalJourneyPlan.add(upperCaseLocation);
           iterator.remove();
         }
