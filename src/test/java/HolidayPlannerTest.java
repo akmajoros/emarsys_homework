@@ -76,6 +76,20 @@ public class HolidayPlannerTest {
     test.add("V");
     test.add("Y");
     assertEquals(test, p.journeyPlanner(d));
+  }
 
+  @Test
+  public void testWithMultipleRepeatedRule() {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("W", "X"));
+    d.add(new DestinationInput("X", ""));
+    d.add(new DestinationInput("Y", "W"));
+    d.add(new DestinationInput("Z", "X"));
+    List<String> test = new ArrayList<>();
+    test.add("X");
+    test.add("Z");
+    test.add("W");
+    test.add("Y");
   }
 }
