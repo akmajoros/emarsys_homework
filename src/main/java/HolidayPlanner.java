@@ -10,12 +10,25 @@ public class HolidayPlanner {
   }
 
   public List<String> journeyPlanner(List<DestinationInput> listOfDestinations) {
-    for (Iterator<DestinationInput> iterator = listOfDestinations.iterator(); iterator.hasNext();) {
-      DestinationInput destinationInput = iterator.next();
-      if (destinationInput.rule.equals("")) {
-        optimalJourneyPlan.add(destinationInput.location);
+    while (listOfDestinations.size() > 0) {
+      for (Iterator<DestinationInput> iterator = listOfDestinations.iterator();
+          iterator.hasNext(); ) {
+
+        DestinationInput destinationInput = iterator.next();
+        String upperCaseLocation = destinationInput.location.toUpperCase();
+        String upperCaseRule = destinationInput.rule.toUpperCase();
+
+        if (destinationInput.rule.equals("")) {
+          optimalJourneyPlan.add(upperCaseLocation);
+          iterator.remove();
+        }
+
+        if (optimalJourneyPlan.contains(upperCaseRule)) {
+          optimalJourneyPlan.add(upperCaseLocation);
+          iterator.remove();
+        }
       }
     }
-    return optimalJourneyPlan;
+      return optimalJourneyPlan;
   }
 }
