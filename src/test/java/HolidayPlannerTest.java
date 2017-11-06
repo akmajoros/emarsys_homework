@@ -91,6 +91,7 @@ public class HolidayPlannerTest {
     test.add("Z");
     test.add("W");
     test.add("Y");
+    assertEquals(test, p.journeyPlanner(d));
   }
 
   @Test(expected = Exception.class)
@@ -98,5 +99,40 @@ public class HolidayPlannerTest {
     HolidayPlanner p = new HolidayPlanner();
     List<DestinationInput> d = new ArrayList<>();
     p.journeyPlanner(d);
+  }
+
+  @Test(expected = Exception.class)
+  public void testWithNoDestinationNoRule() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("", ""));
+    p.journeyPlanner(d);
+  }
+
+  @Test
+  public void testWithMixedDestinationNoRule() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("", ""));
+    d.add(new DestinationInput("X", ""));
+    d.add(new DestinationInput("Y", ""));
+    List<String> test = new ArrayList<>();
+    test.add("X");
+    test.add("Y");
+    assertEquals(test, p.journeyPlanner(d));
+  }
+
+  @Test
+  public void testWithMixedDestinationOneRule() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("X", ""));
+    d.add(new DestinationInput("", ""));
+    d.add(new DestinationInput("Z", "Y"));
+    d.add(new DestinationInput("Y", ""));
+    List<String> test = new ArrayList<>();
+    test.add("X");
+    test.add("Y");
+    test.add("Z");
   }
 }

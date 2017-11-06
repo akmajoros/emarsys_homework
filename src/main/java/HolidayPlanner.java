@@ -18,7 +18,11 @@ public class HolidayPlanner {
         String upperCaseLocation = destinationInput.location.toUpperCase();
         String upperCaseRule = destinationInput.rule.toUpperCase();
 
-        if (destinationInput.rule.equals("")) {
+        if (destinationInput.location.equals("")) {
+          iterator.remove();
+        }
+
+        if (!destinationInput.location.equals("") && destinationInput.rule.equals("")) {
           optimalJourneyPlan.add(upperCaseLocation);
           iterator.remove();
         }
