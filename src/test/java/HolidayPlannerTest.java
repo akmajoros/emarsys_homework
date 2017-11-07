@@ -208,4 +208,27 @@ public class HolidayPlannerTest {
     test.add("X");
     assertEquals(test, p.journeyPlanner(d));
   }
+
+  @Test
+  public void testRepeatedDestinationsRepeatedRules() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("U", ""));
+    d.add(new DestinationInput("V", "U"));
+    d.add(new DestinationInput("W", "U"));
+    d.add(new DestinationInput("W", "V"));
+    d.add(new DestinationInput("X", "W"));
+    d.add(new DestinationInput("Y", "W"));
+    d.add(new DestinationInput("Y", "X"));
+    d.add(new DestinationInput("Z", "Y"));
+    List<String> test = new ArrayList<>();
+    test.add("U");
+    test.add("V");
+    test.add("W");
+    test.add("X");
+    test.add("Y");
+    test.add("Z");
+    assertEquals(test, p.journeyPlanner(d));
+  }
+
 }
