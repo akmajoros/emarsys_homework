@@ -180,4 +180,19 @@ public class HolidayPlannerTest {
     test.add("Z");
     assertEquals(test, p.journeyPlanner(d));
   }
+
+  @Test
+  public void testWithMoreOfSameDestinationRepeatedRules() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("W", "Z"));
+    d.add(new DestinationInput("W", "X"));
+    d.add(new DestinationInput("X", "Z"));
+    d.add(new DestinationInput("Z", ""));
+    List<String> test = new ArrayList<>();
+    test.add("Z");
+    test.add("X");
+    test.add("W");
+    assertEquals(test, p.journeyPlanner(d));
+  }
 }

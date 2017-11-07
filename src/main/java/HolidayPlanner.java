@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
@@ -25,9 +26,17 @@ public class HolidayPlanner {
         } else if (!destinationInput.location.equals("") && destinationInput.rule.equals("")) {
           optimalJourneyPlan.add(upperCaseLocation);
           iterator.remove();
-        } else if (optimalJourneyPlan.contains(upperCaseRule)) {
+        } else if (!optimalJourneyPlan.contains(upperCaseLocation) && optimalJourneyPlan.contains(upperCaseRule)) {
           optimalJourneyPlan.add(upperCaseLocation);
           iterator.remove();
+        } else if (optimalJourneyPlan.contains(upperCaseRule) && optimalJourneyPlan.contains(upperCaseLocation)) {
+          if (optimalJourneyPlan.indexOf(upperCaseRule) > optimalJourneyPlan.indexOf(upperCaseLocation)) {
+            optimalJourneyPlan.remove(upperCaseLocation);
+            optimalJourneyPlan.add(upperCaseLocation);
+            iterator.remove();
+          } else {
+            iterator.remove();
+          }
         }
       }
     }
