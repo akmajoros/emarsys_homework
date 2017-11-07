@@ -195,4 +195,17 @@ public class HolidayPlannerTest {
     test.add("W");
     assertEquals(test, p.journeyPlanner(d));
   }
+
+  @Test
+  public void testWithRepeatedDestinationObject() throws Exception {
+    HolidayPlanner p = new HolidayPlanner();
+    List<DestinationInput> d = new ArrayList<>();
+    d.add(new DestinationInput("X", "Y"));
+    d.add(new DestinationInput("Y", ""));
+    d.add(new DestinationInput("X", "Y"));
+    List<String> test = new ArrayList<>();
+    test.add("Y");
+    test.add("X");
+    assertEquals(test, p.journeyPlanner(d));
+  }
 }

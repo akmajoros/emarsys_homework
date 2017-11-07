@@ -14,8 +14,8 @@ public class HolidayPlanner {
     while (listOfDestinations.size() > 0) {
       for (Iterator<DestinationInput> iterator = listOfDestinations.iterator();
           iterator.hasNext(); ) {
-
         DestinationInput destinationInput = iterator.next();
+
         String upperCaseLocation = destinationInput.location.toUpperCase();
         String upperCaseRule = destinationInput.rule.toUpperCase();
 
@@ -40,7 +40,6 @@ public class HolidayPlanner {
         }
       }
     }
-
     if (optimalJourneyPlan.size() <= 0){
       throw new Exception("Journey can't be created with no locations given");
     } else {
